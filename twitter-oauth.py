@@ -19,4 +19,12 @@ oauth = OAuth1Session(client_key,
 protected_url = 'https://api.twitter.com/1.1/search/tweets.json'
 params = {'q':'food'}
 r = oauth.get(protected_url, params=params)
-print (r.text)
+# print (r.text)
+
+twitter_data = r.text
+twitter_dictionary = json.loads(twitter_data)
+
+for each in twitter_dictionary["statuses"]:
+    print(each["user"]["name"] + ":")
+    print(each["text"])
+    print("---------------------------------------")
